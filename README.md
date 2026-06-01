@@ -16,3 +16,29 @@ Sandshark is a lightweight, cross-platform network socket auditing tool written 
 ## Core Network Handshake Mechanics
 
 Sandshark uses a **TCP Connect Scan** architecture via Python's native `socket.connect_ex()` method. This method hooks into the operating system's network stack to attempt a complete Layer 4 three-way handshake:
+
+---
+
+Sandshark (Scanner)                 Target Endpoint
+        |                                  |
+        | ---------- SYN Packet ---------> |  (Initiate Handshake)
+        |                                  |
+        | <------- SYN-ACK Packet -------- |  (Port is OPEN: Returns 0)
+        |                                  |
+        | ---------- ACK Packet ---------> |  (Handshake Completed)
+        |                                  |
+        | ---------- RST Packet ---------> |  (Socket Safely Closed)
+
+---
+
+By tracking environmental return codes instead of relying on basic try/catch timeouts, the tool rapidly categorizes network states. To prevent infinite hanging on firewalled hosts, sockets are optimized with an aggressive $0.5\text{-second}$ connection timeout parameter.
+
+---
+
+## Deployment
+
+### 1. Prerequisites
+Sandshark requires Python 3.x installed on the host system. Clone the repository natively or download the raw script file:
+```bash
+git clone [https://github.com/YOUR_USERNAME/python-tcp-scanner.git](https://github.com/YOUR_USERNAME/python-tcp-scanner.git)
+cd python-tcp-scanner
