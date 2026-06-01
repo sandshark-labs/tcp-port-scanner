@@ -40,5 +40,5 @@ By tracking environmental return codes instead of relying on basic try/catch tim
 ### 1. Prerequisites
 Sandshark requires Python 3.x installed on the host system. Clone the repository natively or download the raw script file:
 ```bash
-git clone [https://github.com/YOUR_USERNAME/python-tcp-scanner.git](https://github.com/YOUR_USERNAME/python-tcp-scanner.git)
+git clone [https://github.com/sandshark-labs/python-tcp-scanner.git](https://github.com/sandshark-labs/python-tcp-scanner.git)
 cd python-tcp-scanner
